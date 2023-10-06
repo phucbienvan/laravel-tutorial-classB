@@ -23,14 +23,14 @@ Route::get('/', function () {
 // Route::get('/users', [UserController::class, 'index'])->name('users.index');
 // Route::get('/users/{id}', [UserController::class, 'show']);
 
-Route::group(['prefix' => '/users'], function () {
-    Route::get('', [UserController::class, 'index']);
-    Route::get('/{id}', [UserController::class, 'show']);
-});
+// Route::group(['prefix' => '/users'], function () {
+//     Route::get('', [UserController::class, 'index']);
+//     Route::get('/{id}', [UserController::class, 'show']);
+// });
 
 Route::group(['prefix' => '/posts'], function () {
     Route::post('', [PostController::class, 'store']);
 });
 
-Route::get('/user-profiles', [UserProfileController::class, 'index']);
+// Route::get('/user-profiles', [UserProfileController::class, 'index']);
 
