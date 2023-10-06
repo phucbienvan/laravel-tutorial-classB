@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Post\CreatePostRequest;
+use App\Http\Resources\Post\PostResource;
 use App\Models\Post;
 use App\Service\PostService;
 use Illuminate\Http\Request;
@@ -16,6 +17,13 @@ class PostController extends Controller
         $this->postService = $postService;
     }
 
+    public function index()
+    {
+        $posts = Post::all();
+
+        return view('posts_index', ['posts' => $posts]);
+    }
+
     public function store(CreatePostRequest $request)
     {
         // normal
@@ -24,7 +32,8 @@ class PostController extends Controller
 
             if ($post) {
                 return response()->json([
-                    'data' => $post,
+                    'data' => new PostResource($post),
+                    // 'data' => $post,
                     'message' => 'create post success',
                     'code' => 200
                 ]);

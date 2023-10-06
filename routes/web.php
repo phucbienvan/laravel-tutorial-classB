@@ -32,5 +32,6 @@ Route::group(['prefix' => '/posts'], function () {
     Route::post('', [PostController::class, 'store']);
 });
 
+Route::get('/posts', [PostController::class, 'index']);
 // Route::get('/user-profiles', [UserProfileController::class, 'index']);
 
