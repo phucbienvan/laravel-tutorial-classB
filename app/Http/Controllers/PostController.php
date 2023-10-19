@@ -49,6 +49,26 @@ class PostController extends Controller
         return view('posts.show', ['post' => $post]);
     }
 
+    public function edit(Post $post)
+    {
+        return view('posts.edit', ['post' => $post]);
+    }
+
+    public function update(Post $post, CreatePostRequest $request)
+    {
+        $check = $post->update($request->validated());
+
+        if($check) {
+            return redirect()->back()->with([
+                'success' => 'Edit post success'
+            ]);
+        }
+
+        return redirect()->back()->with([
+            'fail' => 'Edit post fail'
+        ]);
+    }
+
     public function store(CreatePostRequest $request)
     {
         // normal
