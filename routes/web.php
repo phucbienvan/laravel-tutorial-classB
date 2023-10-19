@@ -30,8 +30,10 @@ Route::get('/', function () {
 
 Route::group(['prefix' => '/posts'], function () {
     Route::post('', [PostController::class, 'store']);
+    Route::get('', [PostController::class, 'index'])->name('index.posts');
+    Route::get('create', [PostController::class, 'create'])->name('create.posts');
+    Route::post('insert', [PostController::class, 'insert'])->name('insert.posts');
+    Route::get('/{post}', [PostController::class, 'show'])->name('show.posts');
 });
 
-Route::get('/posts', [PostController::class, 'index']);
-// Route::get('/user-profiles', [UserProfileController::class, 'index']);
 

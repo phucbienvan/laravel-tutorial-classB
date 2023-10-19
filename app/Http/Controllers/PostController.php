@@ -21,14 +21,39 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return view('posts_index', ['posts' => $posts]);
+        return view('posts.index', ['posts' => $posts]);
+    }
+
+    public function create()
+    {
+        return view('posts.create');
+    }
+
+    public function insert(CreatePostRequest $request)
+    {
+        $post = Post::create($request->validated());
+
+        if ($post) {
+            return redirect()->back()->with([
+                'success' => 'create post success'
+            ]);
+        }
+
+        return redirect()->back()->with([
+            'fail' => 'create post fail'
+        ]);
+    }
+
+    public function show(Post $post)
+    {
+        return view('posts.show', ['post' => $post]);
     }
 
     public function store(CreatePostRequest $request)
     {
         // normal
         try {
-            $post = Post::create($request->all());
+            $post = Post::create($request->validated());
 
             if ($post) {
                 return response()->json([
