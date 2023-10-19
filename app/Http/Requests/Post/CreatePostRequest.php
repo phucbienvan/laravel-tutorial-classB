@@ -26,4 +26,12 @@ class CreatePostRequest extends FormRequest
             'description' => ['required'],
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'title khong duoc rong',
+            'description.required' => 'description khong duoc rong',
+        ];
+    }
 }

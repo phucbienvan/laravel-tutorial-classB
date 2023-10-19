@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<h2>Edit post</h2>
-@if(Session::has('success'))
+    <h2>Edit post</h2>
+    @if(Session::has('success'))
     <p>{{ Session::get('success') }}</p>
-@endif
+    @endif
 
-@if(Session::has('fail'))
+    @if(Session::has('fail'))
     {{ Session::get('fail') }}
-@endif
+    @endif
 
-<form action="{{ route('update.posts', $post->id) }}" method="POST">
-@csrf
-  <label for="fname">Title:</label><br>
-  <input type="text" name="title" value="{{ $post->title }}"><br>
-  <label for="lname">Description:</label><br>
-  <input type="text" name="description" value="{{ $post->description }}"><br><br>
-  <input type="submit" value="Submit">
-</form> 
+    <form action="{{ route('update.posts', $post->id) }}" method="POST">
+        @csrf
+        <label for="fname">Title:</label><br>
+        <input type="text" name="title" value="{{ $post->title }}"><br>
+        @error('title')
+        <div>{{ $message }}</div>
+        @enderror
+        <label for="lname">Description:</label><br>
+        <input type="text" name="description" value="{{ $post->description }}"><br><br>
+        @error('description')
+        <div>{{ $message }}</div>
+        @enderror
+        <input type="submit" value="Submit">
+    </form>
 </body>
+
 </html>
