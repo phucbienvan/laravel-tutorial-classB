@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
@@ -20,13 +21,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/users', [UserController::class, 'index'])->name('users.index');
-// Route::get('/users/{id}', [UserController::class, 'show']);
 
-// Route::group(['prefix' => '/users'], function () {
-//     Route::get('', [UserController::class, 'index']);
-//     Route::get('/{id}', [UserController::class, 'show']);
-// });
+Route::get('form-login', [AuthController::class, 'formLogin'])->name('form_login');
+Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::group(['prefix' => '/posts'], function () {
     Route::post('', [PostController::class, 'store']);
