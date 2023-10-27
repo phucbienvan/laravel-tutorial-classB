@@ -24,6 +24,8 @@ Route::get('/', function () {
 
 Route::get('form-login', [AuthController::class, 'formLogin'])->name('form_login');
 Route::post('login', [AuthController::class, 'login'])->name('login');
+Route::get('register', [AuthController::class, 'formRegister'])->name('form_register');
+Route::post('register', [AuthController::class, 'register'])->name('register');
 
 Route::group(['prefix' => '/posts'], function () {
     Route::post('', [PostController::class, 'store']);
