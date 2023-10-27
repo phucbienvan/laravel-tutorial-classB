@@ -31,6 +31,7 @@ tr:nth-child(even) {
     <th>Title</th>
     <th>Description</th>
     <th>Edit</th>
+    <th>Action</th>
   </tr>
   @foreach($posts as $post)
   <tr>
@@ -44,6 +45,9 @@ tr:nth-child(even) {
     <td>{{ $post->description }}</td>
     <td><a href="{{ route('edit.posts', $post->id) }}">
       Edit
+    </a></td>
+    <td><a onclick="return confirm('Ban co muon xoa ko?')" href="{{ route('delete.posts', $post->id) }}">
+      Delete
     </a></td>
     @endif
   </tr>

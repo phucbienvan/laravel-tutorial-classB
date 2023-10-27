@@ -69,6 +69,21 @@ class PostController extends Controller
         ]);
     }
 
+    public function delete(Post $post)
+    {
+        $check = $post->delete();
+
+        if($check) {
+            return redirect()->back()->with([
+                'success' => 'Deleted post success'
+            ]);
+        }
+
+        return redirect()->back()->with([
+            'fail' => 'Deleted post fail'
+        ]);
+    }
+
     public function store(CreatePostRequest $request)
     {
         // normal

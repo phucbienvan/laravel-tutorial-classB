@@ -36,6 +36,7 @@ Route::group(['prefix' => '/posts'], function () {
     Route::get('/{post}', [PostController::class, 'show'])->name('show.posts');
     Route::get('edit/{post}', [PostController::class, 'edit'])->name('edit.posts');
     Route::post('update/{post}', [PostController::class, 'update'])->name('update.posts');
+    Route::get('delete-post/{post}', [PostController::class, 'delete'])->name('delete.posts');
 });
 
 
