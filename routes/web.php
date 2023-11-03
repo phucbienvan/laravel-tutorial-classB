@@ -27,15 +27,16 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::get('register', [AuthController::class, 'formRegister'])->name('form_register');
 Route::post('register', [AuthController::class, 'register'])->name('register');
 
-Route::group(['prefix' => '/posts'], function () {
-    Route::post('', [PostController::class, 'store']);
-    Route::get('', [PostController::class, 'index'])->name('index.posts');
-    Route::get('create', [PostController::class, 'create'])->name('create.posts');
-    Route::post('insert', [PostController::class, 'insert'])->name('insert.posts');
-    Route::get('/{post}', [PostController::class, 'show'])->name('show.posts');
-    Route::get('edit/{post}', [PostController::class, 'edit'])->name('edit.posts');
-    Route::post('update/{post}', [PostController::class, 'update'])->name('update.posts');
-    Route::get('delete-post/{post}', [PostController::class, 'delete'])->name('delete.posts');
+Route::group(['middleware' => 'login'], function() {
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+    Route::group(['prefix' => '/posts'], function () {
+        Route::post('', [PostController::class, 'store']);
+        Route::get('', [PostController::class, 'index'])->name('index.posts');
+        Route::get('create', [PostController::class, 'create'])->name('create.posts');
+        Route::post('insert', [PostController::class, 'insert'])->name('insert.posts');
+        Route::get('/{post}', [PostController::class, 'show'])->name('show.posts');
+        Route::get('edit/{post}', [PostController::class, 'edit'])->name('edit.posts');
+        Route::post('update/{post}', [PostController::class, 'update'])->name('update.posts');
+        Route::get('delete-post/{post}', [PostController::class, 'delete'])->name('delete.posts');
+    });
 });
-
-

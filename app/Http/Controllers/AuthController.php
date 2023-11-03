@@ -48,4 +48,11 @@ class AuthController extends Controller
             'fail' => 'Register fail'
         ]);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect()->route('form_login');
+    }
 }

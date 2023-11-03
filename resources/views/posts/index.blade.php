@@ -24,6 +24,8 @@ tr:nth-child(even) {
 
 <h3>List Post</h3>
 <a href="{{ route('create.posts') }}">Create posts</a>
+<br>
+<a href="{{ route('logout') }}">Logout</a>
 
 <table>
 <tr>
